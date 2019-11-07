@@ -8,15 +8,14 @@ From an Artificial Intelligence perspective, developing an agent for this game i
 
 ## Current State of the Art
 
-The 'world champion' standard of AI for this board game is a program called JSettlers, developed by Jeremy Monin over 10 years ago and still in active development today (he gave some advice for this project!). This program is developed in Java and is an entirely rule-based agent with hard-coded decisions and heuristics, and the agent comes with a fully-implemented framework of the board game as well. No attempts to develop a new Settlers of Catan AI have been able to be better than the JSettlers agent to date.
+The 'world champion' standard of AI for this board game is a program called [JSettlers](http://nand.net/jsettlers/), developed by [Jeremy Monin](http://www.nand.net/~jeremy/home.htm) over 10 years ago and still in active development today (he gave some advice for this project!). This program is developed in Java and contains a fully-implemented framework of the board game as well as an entirely rule-based agent with hard-coded decisions and heuristics. The existing research surrounding Settlers of Catan use this agent as a benchmark, but no attempts to develop a new Settlers of Catan AI have been able to be significantly better than the JSettlers agent to date.
 
 ## The DQN Algorithm
 
-The DQN, or Deep Q-Learning Network, algorithm is a novel approach to reinforcement learning proposed by [the DeepMind team in 2013](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf). It involves utilizing a deep neural network to approximate the Q value for (state, action) pairs instead of classical Q-Learning, which involves keeping a table with Q values and indexes for every (state, action) pair. DQN is very efficient when there is a large state space with a large amount of actions. In these scenarios, keeping a table for every possible (state, action) pair quickly becomes infeasible. Take a look at the graphic below for a basic representation of these two approaches:
+The DQN, or Deep Q-Learning Network, algorithm is a novel approach to reinforcement learning proposed by [the DeepMind team in 2013](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf). It involves utilizing a deep neural network to approximate the Q value for (state, action) pairs instead of classical Q-Learning, which involves keeping a table with Q values and indexes for every (state, action) pair. DQN is very efficient when there is a large state space with a large amount of actions. In these scenarios, keeping a table for every possible (state, action) pair quickly becomes infeasible. This algorithm has seen success with game-playing in the context of Atari and Pacman, as opposed to the classical Q-Learning approach. Take a look at the graphic below for a basic representation of these two approaches:
 
 <<insert DQN and Q-Learning Graphic Here>>
 
-This algorithm has seen success with game-playing in the context of Atari and Pacman, and generally follows the logic of the diagram below:
 
 ## Our Goals
 
