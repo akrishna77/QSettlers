@@ -51,6 +51,8 @@ For each DQN, we have to define what a 'state' is as a feature vector. In Settle
 |:--:| 
 | *DQN for Settlement Scoring* |
 
+
+
 ### Neural Net Hyperparameters
 
 We performed some basic testing to determine the hyperparameters for the two neural networks above. These hyperparameters are as follows:
@@ -97,14 +99,21 @@ This database of short-term memory is called **Replay Memory**. Now, every time 
 
 ## System Architecture Design
 
-A large part of this project was modifying the original JSettlers code to interface with our DQN, which required understanding the underlying architecture of JSettlers and altering it to our needs. The framework of JSettlers is comprised of the following main components:
+A large part of this project was modifying the original JSettlers code to interface with our DQN, which required understanding the underlying architecture of JSettlers and altering it to our needs. The framework of JSettlers is comprised of the following main components, all written in Java:
 
-1. SOCServer: Server that hosts the game and sends messages between clients
-2. SOCClient: Player-side client. Connect to a server to play a game.
-3. RobotClient: Client to connect an AI to a game; handles messages between Server and Brain.
-4. RobotBrain: Contains all the decision-making logic. Takes game state & queries from Client and returns decision.
+**Server:** Server that hosts the game and sends messages between clients
+**PlayerClient:** Player-side client. Connect to a server to play a game.
+**RobotClient:** Client to connect an AI to a game; handles messages between Server and Brain.
+**RobotBrain:** Contains all the decision-making logic. Takes game state & queries from RobotClient and returns decision.
 
-To implement our own agent, we had to create our own Client and Brain. 
+Our DQN code was all written in Python, and is implemented in the component:
+
+**DQN Server:** Server that accepts game states and queries from a client and returns decisions while training the underlying model.
+
+
+To implement our own agent, we had to create our own RobotClient and RobotBrain that interface both with the Server for game management and our DQN Server for decision logic. Creating both connections led to some unnecessary connection complexity, so we further altered the JSettlers game server to locally instantiate our RobotClient and RobotBrain as well as JSettlers AI agents such that nobody needs to connect to the server; we're actually running on the server itself. A diagram of this system is shown below:
+
+<<INclude diagram here>>
 
 
 ## Training Design
@@ -116,11 +125,23 @@ To effectively let the agent play games and learn, we had the following goals:
 3. Automate the recording of game results
 4. Eliminate as much latency & communication complexity as possible
 
-We have modified the 
+With some great features already existing inside JSettlers and creating some additional features, we accomplished these goals and had a very user-friendly training pipeline that could be run by a one simple command line input. Once the user prompts this pipeline, the training logic flow is as follows:
+
+1. Instantiate our agent & ensure it's connected to the DQN decision center
+2. Start a game with 3 JSettlers AI and our agent without using a GUI.
+3. Whenever our agent needs to make one of the decisions we have implemented with DQN, send a query with the current state representation to the DQN Server.
+4. Get the response, execute the decision, and return the consequences to the DQN server for training.
+5. If the game has ended, report the agent's final standing to the DQN server for training.
+6. Repeat until 200 games have been played.
+7. Save model weights and performance logs.
+
+
+The training process as a whole takes around X days to run to completion, averaging about (Games per hour statitic)
+
 
 ## Results
 
-To do!
+To do! Show number of total placings as well as image of Tensorboard rewards during training.
 
 ## Future Possibilites
 
