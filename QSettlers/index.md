@@ -102,7 +102,9 @@ This database of short-term memory is called **Replay Memory**. Now, every time 
 A large part of this project was modifying the original JSettlers code to interface with our DQN, which required understanding the underlying architecture of JSettlers and altering it to our needs. The framework of JSettlers is comprised of the following main components, all written in Java:
 
 **Server:** Server that hosts the game and sends messages between clients
+
 **PlayerClient:** Player-side client. Connect to a server to play a game.
+
 **RobotClient:** Client to connect an AI to a game; handles messages between Server and Brain.
 
 **RobotBrain:** Contains all the decision-making logic. Takes game state & queries from RobotClient and returns decision.
