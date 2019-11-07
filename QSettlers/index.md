@@ -12,7 +12,15 @@ The 'world champion' standard of AI for this board game is a program called [JSe
 
 ## The DQN Algorithm
 
-The DQN, or Deep Q-Learning Network, algorithm is a novel approach to reinforcement learning proposed by [the DeepMind team in 2013](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf). It involves utilizing a deep neural network to approximate the Q value for (state, action) pairs instead of classical Q-Learning, which involves keeping a table with Q values and indexes for every (state, action) pair. DQN is very efficient when there is a large state space with a large amount of actions. In these scenarios, keeping a table for every possible (state, action) pair quickly becomes infeasible. This algorithm has seen success with game-playing in the context of Atari and Pacman, as opposed to the classical Q-Learning approach. Take a look at the graphic below for a basic representation of these two approaches:
+The DQN, or Deep Q-Learning Network, algorithm is a novel approach to reinforcement learning proposed by [the DeepMind team in 2013](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf). As a quick refresher on reinforcement learning, take a look at the graphic below. In a model with an agent and an environment, the goal of reinforcement learning is to develop a policy such that an agent can find itself in a particular state, query its policy, and perform the corresponding action such that its reward is maximized.
+
+| ![Reinforcement Learning Diagram](assets/img/reinforcement.png) | 
+|:--:| 
+| *Source: https://www.analyticsvidhya.com* |
+
+Q-Learning is a technique to develop such a policy by maintaining a large table with expected rewards (Q values) for every (state, action) pair. The agent will simply look at every action that it can take within a state, and execute the action with the largest Q-value. However, in a large state space with a large amount of possible actions, this table becomes infeasible to keep and thoroughly 'fill out'. 
+
+Deep Q-Learning is an alternative approach to Q-Learning that doesn't face these issues. It involves utilizing a deep neural network to approximate the Q value for (state, action) pairs instead of a table like classical Q-Learning. DQN is very efficient when there is a large state space with a large amount of actions, as it can estimate a Q-value for a never-seen-before state by comparing how similar it is to known states. This algorithm has seen success with game-playing in the context of Atari and Pacman, as opposed to the classical Q-Learning approach. Take a look at the graphic below for a basic representation of these two approaches:
 
 | ![General DQN Diagram](assets/img/Q-Learning.png) | 
 |:--:| 
@@ -22,6 +30,11 @@ The DQN, or Deep Q-Learning Network, algorithm is a novel approach to reinforcem
 ## Our Goals
 
 Our goal for this project was to use this DQN algorithm to improve upon the JSettlers agent and show that a DQN can be successfully applied to the two game mechanics of Settlers of Catan: building and negotiating. Building an agent that utilizes DQN to play the entire game is outside the scope of this work; we are simply building upon the JSettlers agent by replacing rule-based decisions by DQN output where applicable. 
+
+
+## DQN Design
+
+As shown in the diagram above, when feeding the 'state' as input
 
 ## Architecture Design
 
