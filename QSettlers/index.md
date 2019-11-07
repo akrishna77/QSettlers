@@ -39,9 +39,14 @@ As shown in the diagram above, we have to define what our 'state' really is as w
 
 For each DQN, we have to define what a 'state' is as a feature vector. In Settlers of Catan there are a huge amount of features in a game state: what buildings each player has, where these buildings are, what the terrain is like, how many points each player has, and many more. We elected not to use every single feature in a state representation as the network would require more training time to learn which are relevant and which are not. By using prior knowledge and only providing relevant features to the network, we hypothesize training to be more efficient. The diagrams below show our constructed feature vectors for each network:
 
-| ![Trade DQN Diagram](assets/img/trade_nn.png){:height="150%" width="150%"} | 
+| ![Trade DQN Diagram](assets/img/trade_nn.png){:height="120%" width="150%"} | 
 |:--:| 
 | *DQN for Trade Decisions* |
+
+
+| ![Settlement DQN Diagram](assets/img/trade_nn.png){:height="120%" width="150%"} | 
+|:--:| 
+| *DQN for Settlement Scoring* |
 
 
 ## Architecture Design
