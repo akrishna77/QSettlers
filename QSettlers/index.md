@@ -14,7 +14,7 @@ The 'world champion' standard of AI for this board game is a program called [JSe
 
 The DQN, or Deep Q-Learning Network, algorithm is a novel approach to reinforcement learning proposed by [the DeepMind team in 2013](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf). As a quick refresher on reinforcement learning, take a look at the graphic below. In a model with an agent and an environment, the goal of reinforcement learning is to develop a policy such that an agent can find itself in a particular state, query its policy, and perform the corresponding action such that its reward is maximized.
 
-| ![Reinforcement Learning Diagram](assets/img/reinforcement.png) | 
+| ![Reinforcement Learning Diagram](assets/img/reinforcement.jpg) | 
 |:--:| 
 | *Source: https://www.analyticsvidhya.com* |
 
