@@ -41,12 +41,12 @@ As shown in the diagram above, we have to define what our 'state' really is as w
 
 For each DQN, we have to define what a 'state' is as a feature vector. In Settlers of Catan there are a huge amount of features in a game state: what buildings each player has, where these buildings are, what the terrain is like, how many points each player has, and many more. We elected not to use every single feature in a state representation as the network would require more training time to learn which are relevant and which are not. By using prior knowledge and only providing relevant features to the network, we hypothesize training to be more efficient. The diagrams below show our constructed feature vectors for each network:
 
-| ![Trade DQN Diagram](assets/img/trade_nn.png){:height="120%" width="150%"} | 
+| ![Trade DQN Diagram](assets/img/trade_nn.png)| 
 |:--:| 
 | *DQN for Trade Decisions* |
 
 
-| ![Settlement DQN Diagram](assets/img/trade_nn.png){:height="120%" width="150%"} | 
+| ![Settlement DQN Diagram](assets/img/trade_nn.png)| 
 |:--:| 
 | *DQN for Settlement Scoring* |
 
@@ -63,12 +63,11 @@ Additionally, the agent has to explore all the different actions in different st
 
 In this technique, we have a parameter $$\epsilon$$ that is initialized to a high value, such as .999. Whenever we have to make a decision, we generate a random number and if it is greater than epsilon, we return a completely random action without querying our network. If this random number is less than epsilon, we actually perform forward propogation on our network and return the result. In both scenarios, we train our network on the resultant reward. After every decision is made, we update epsilon by a decay factor:
 
-$$ \epsilon = \epsilon \times decay$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon&space;=&space;decay&space;\times&space;\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon&space;=&space;decay&space;\times&space;\epsilon" title="\epsilon = decay \times \epsilon" /></a>
 
 This represents the process of our agent becoming 'more sure' of itself as it trains more and more, while still exploring spaces where the expected reward is unknown. For our model, we used the following values for these parameters:
 
-$$ \epsilon = 1.00 $$
-$$ decay = 0.975 $$
+<a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon&space;=&space;1.00&space;\\&space;decay&space;=&space;0.975" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon&space;=&space;1.00&space;\\&space;decay&space;=&space;0.975" title="\epsilon = 1.00 \\ decay = 0.975" /></a>
 
 
 ## System Architecture Design
