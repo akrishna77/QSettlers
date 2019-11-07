@@ -18,7 +18,7 @@ The DQN, or Deep Q-Learning Network, algorithm is a novel approach to reinforcem
 
 | ![Reinforcement Learning Diagram](assets/img/reinforcement.jpg) | 
 |:--:| 
-| *Source: https://www.analyticsvidhya.com* |
+| *Source: https://www.kdnuggets.com* |
 
 
 Q-Learning is a technique to develop such a policy by maintaining a large table with expected rewards (Q values) for every (state, action) pair. The agent will simply look at every action that it can take within a state, and execute the action with the largest Q-value. However, in a large state space with a large amount of possible actions, this table becomes infeasible to keep and thoroughly 'fill out'. 
@@ -103,6 +103,7 @@ A large part of this project was modifying the original JSettlers code to interf
 
 **Server:** Server that hosts the game and sends messages between clients
 **PlayerClient:** Player-side client. Connect to a server to play a game.
+
 **RobotClient:** Client to connect an AI to a game; handles messages between Server and Brain.
 **RobotBrain:** Contains all the decision-making logic. Takes game state & queries from RobotClient and returns decision.
 
@@ -154,3 +155,14 @@ A major part of this project was developing the architecture that supports DQN i
 5. Targeting specific players in some scenarios
 
 Given enough time and understanding of the game, this project can be extended to create an AI agent completely independant of the JSettlers agent. The results of such an endeavor are unclear, but the possibility is there!
+
+
+## References 
+
+- JSettlers: http://nand.net/jsettlers/
+
+- DQN Tutorial: https://pythonprogramming.net/deep-q-learning-dqn-reinforcement-learning-python-tutorial/
+
+- DQN Algorithm: https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf
+
+- 
