@@ -14,7 +14,7 @@ The 'world champion' standard of AI for this board game is a program called [JSe
 
 The DQN, or Deep Q-Learning Network, algorithm is a novel approach to reinforcement learning proposed by [the DeepMind team in 2013](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf). It involves utilizing a deep neural network to approximate the Q value for (state, action) pairs instead of classical Q-Learning, which involves keeping a table with Q values and indexes for every (state, action) pair. DQN is very efficient when there is a large state space with a large amount of actions. In these scenarios, keeping a table for every possible (state, action) pair quickly becomes infeasible. This algorithm has seen success with game-playing in the context of Atari and Pacman, as opposed to the classical Q-Learning approach. Take a look at the graphic below for a basic representation of these two approaches:
 
-| ![General DQN Diagram](assets/img/dqn_general.png) | 
+| ![General DQN Diagram](assets/img/general_dqn.png) | 
 |:--:| 
 | *DQN Model Diagram* |
 
