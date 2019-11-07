@@ -12,6 +12,8 @@ The 'world champion' standard of AI for this board game is a program called [JSe
 
 ## The DQN Algorithm
 
+### Introduction
+
 The DQN, or Deep Q-Learning Network, algorithm is a novel approach to reinforcement learning proposed by [the DeepMind team in 2013](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf). As a quick refresher on reinforcement learning, take a look at the graphic below. In a model with an agent and an environment, the goal of reinforcement learning is to develop a policy such that an agent can find itself in a particular state, query its policy, and perform the corresponding action such that its reward is maximized.
 
 | ![Reinforcement Learning Diagram](assets/img/reinforcement.jpg) | 
@@ -21,12 +23,11 @@ The DQN, or Deep Q-Learning Network, algorithm is a novel approach to reinforcem
 
 Q-Learning is a technique to develop such a policy by maintaining a large table with expected rewards (Q values) for every (state, action) pair. The agent will simply look at every action that it can take within a state, and execute the action with the largest Q-value. However, in a large state space with a large amount of possible actions, this table becomes infeasible to keep and thoroughly 'fill out'. 
 
-Deep Q-Learning is an alternative approach to Q-Learning that doesn't face these issues. It involves utilizing a deep neural network to approximate the Q value for (state, action) pairs instead of a table like classical Q-Learning. DQN is very efficient when there is a large state space with a large amount of actions, as it can estimate a Q-value for a never-seen-before state by comparing how similar it is to known states. This algorithm has seen success with game-playing in the context of Atari and Pacman, as opposed to the classical Q-Learning approach. Take a look at the graphic below for a basic representation of these two approaches:
+Deep Q-Learning is an alternative approach to Q-Learning that doesn't face these issues. It involves utilizing a deep neural network (CNN) to approximate the Q value for (state, action) pairs instead of a table like classical Q-Learning. DQN is very efficient when there is a large state space with a large amount of actions, as it can estimate a Q-value for a never-seen-before state by comparing how similar it is to known states. This algorithm has seen success with game-playing in the context of Atari and Pacman, as opposed to the classical Q-Learning approach. Take a look at the graphic below for a basic representation of these two approaches:
 
 | ![General DQN Diagram](assets/img/Q-Learning.png) | 
 |:--:| 
 | *Source: https://www.analyticsvidhya.com* |
-
 
 ## Our Goals
 
@@ -50,6 +51,15 @@ For each DQN, we have to define what a 'state' is as a feature vector. In Settle
 |:--:| 
 | *DQN for Settlement Scoring* |
 
+### Neural Net Hyperparameters
+
+We performed some basic testing to determine the hyperparameters for the two neural networks above. These hyperparameters are as follows:
+
+1. Number of hidden layers: 2
+2. Size of hidden layers: 256
+
+The values for other hyperparameters are shown explained in the following sections. 
+
 ### Defining and Exploring the Reward Space
 
 In order for the model to learn what is successful and what isn't, we need to feed it rewards as it takes more and more actions. In a more ideal game, we can feed a reward at every step such that the agent can map immediate actions to immediate rewards. In Settlers of Catan and more complex games, however, it is the case that we don't know how successful a move is until the very end of the game. The patterns of these long term rewards are harder for a model to learn, and makes for a challenging reinforcement learning problem. We have defined our rewards as the following, and the agent only receives this reward at the end of every game:
@@ -63,11 +73,26 @@ Additionally, the agent has to explore all the different actions in different st
 
 In this technique, we have a parameter $$\epsilon$$ that is initialized to a high value, such as .999. Whenever we have to make a decision, we generate a random number and if it is greater than epsilon, we return a completely random action without querying our network. If this random number is less than epsilon, we actually perform forward propogation on our network and return the result. In both scenarios, we train our network on the resultant reward. After every decision is made, we update epsilon by a decay factor:
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon&space;=&space;decay&space;\times&space;\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon&space;=&space;decay&space;\times&space;\epsilon" title="\epsilon = decay \times \epsilon" /></a>
+| <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon&space;=&space;decay&space;\times&space;\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon&space;=&space;decay&space;\times&space;\epsilon" title="\epsilon = decay \times \epsilon" /></a>| 
+|:--:| 
+|  |
 
 This represents the process of our agent becoming 'more sure' of itself as it trains more and more, while still exploring spaces where the expected reward is unknown. For our model, we used the following values for these parameters:
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon&space;=&space;1.00&space;\\&space;decay&space;=&space;0.975" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon&space;=&space;1.00&space;\\&space;decay&space;=&space;0.975" title="\epsilon = 1.00 \\ decay = 0.975" /></a>
+|<a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon&space;=&space;1.00&space;\\&space;decay&space;=&space;0.975" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon&space;=&space;1.00&space;\\&space;decay&space;=&space;0.975" title="\epsilon = 1.00 \\ decay = 0.975" /></a>|
+|:--:| 
+|  |
+
+### Replay Memory
+
+With a neural network it's often inefficient to train on single data points and perform back-propogation for every observation in your dataset, and so these models are typically trained in batches such that the model trains on batches of data at one time. With reinforcement learning, it's intuitive to train every time you perform an action and get feedback, but we run into the same efficiency problem. To solve this, we keep a database of 'short-term memory', and every time the agent performs an action and gets feedback we place this 'experience' in our database. We do want to train on new experiences, so when we add a new experience in our database, we remove the oldest experience.
+
+This database of short-term memory is called **Replay Memory**. Now, every time we want to update our weights we randomly select a number of experiences from our replay memory and use them as a batch to train our model. The replay memory size as well as training batch size are two parameters that need to be optimized, and for this project we use the following values: 
+
+| <a href="https://www.codecogs.com/eqnedit.php?latex=\begin{center}&space;Replay\&space;Memory\&space;Size&space;=&space;500&space;\end{center}&space;Training\&space;Batch\&space;Size&space;=&space;16" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\begin{center}&space;Replay\&space;Memory\&space;Size&space;=&space;500&space;\end{center}&space;Training\&space;Batch\&space;Size&space;=&space;16" title="\begin{center} Replay\ Memory\ Size = 500 \end{center} Training\ Batch\ Size = 16" /></a>| 
+|:--:| 
+| |
+
 
 
 ## System Architecture Design
