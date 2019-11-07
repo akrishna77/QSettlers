@@ -103,8 +103,8 @@ A large part of this project was modifying the original JSettlers code to interf
 
 **Server:** Server that hosts the game and sends messages between clients
 **PlayerClient:** Player-side client. Connect to a server to play a game.
-
 **RobotClient:** Client to connect an AI to a game; handles messages between Server and Brain.
+
 **RobotBrain:** Contains all the decision-making logic. Takes game state & queries from RobotClient and returns decision.
 
 Our DQN code was all written in Python, and is implemented in the component:
