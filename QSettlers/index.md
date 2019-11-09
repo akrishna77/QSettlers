@@ -145,11 +145,11 @@ To implement our own agent, we had to create our own Client and Brain that inter
 &nbsp;
 &nbsp;
 
-After designing and implementing this, however, we realized that a connection from a server to a client to another server led to some unnecessary connection complexity, so we further 'tricked' the JSettlers game server to locally instantiate our Client and Brain as if it were an internal JSettlers AI. In this way, we can run our agent on the server itself and ignore connecting to the server with our client. This improved architecture is shown in the diagram below:
+After designing and implementing this, however, we realized that a connection from a server to a client to another server led to some unnecessary connection complexity, so we further 'tricked' the JSettlers game server to locally instantiate our Client and Brain as if it were an internal JSettlers AI. In this way, we can run our agent on the server itself and ignore connecting to the server with our client. This simplifies the experiment setup process and makes the pipeline faster and more robust at the cost of some clever framework manipulaton. This improved architecture is shown in the diagram below:
 
-| ![Architecture 1](assets/img/arch1.png)| 
+| ![Architecture 2](assets/img/arch2.png)| 
 |:--:| 
-| *Initial Pipeline Design* |
+| *Improved Pipeline Design* |
  
 &nbsp;
 &nbsp;
