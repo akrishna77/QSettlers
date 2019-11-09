@@ -1,9 +1,9 @@
 ---
 ---
 
-@import "{{ site.theme }}";
-
 .inner {
 	width: 80%;
 	margin: 0 auto;
 }
+
+@import "{{ site.theme }}";
