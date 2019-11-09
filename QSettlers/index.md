@@ -101,22 +101,31 @@ This database of short-term memory is called **Replay Memory**. Now, every time 
 
 A large part of this project was modifying the original JSettlers code to interface with our DQN, which required understanding the underlying architecture of JSettlers and altering it to our needs. The framework of JSettlers is comprised of the following main components, all written in Java:
 
-**Server:** Server that hosts the game and sends messages between clients
+**JSettlers Server:** Server that hosts the game and sends messages between clients
 
-**PlayerClient:** Player-side client. Connect to a server to play a game.
+**DQNClient:** Player-side client. Connect to a server to play a game.
 
-**RobotClient:** Client to connect an AI to a game; handles messages between Server and Brain.
+**Settlers Bots:** Internal AI agents running in the server itself
 
-**RobotBrain:** Contains all the decision-making logic. Takes game state & queries from RobotClient and returns decision.
+**Brain Module:** Contains all the decision-making logic. Takes game state & queries from Client and returns decision.
 
 Our DQN code was all written in Python, and is implemented in the component:
 
 **DQN Server:** Server that accepts game states and queries from a client and returns decisions while training the underlying model.
 
 
-To implement our own agent, we had to create our own RobotClient and RobotBrain that interface both with the Server for game management and our DQN Server for decision logic. Creating both connections led to some unnecessary connection complexity, so we further altered the JSettlers game server to locally instantiate our RobotClient and RobotBrain as well as JSettlers AI agents such that nobody needs to connect to the server; we're actually running on the server itself. A diagram of this system is shown below:
+To implement our own agent, we had to create our own Client and Brain that interface both with the Server for game management and our DQN Server for decision logic. This initial architecture is shown in the diagram below:
 
-<<INclude diagram here>>
+| ![Architecture 1](assets/img/arch1.png)| 
+|:--:| 
+| *Initial Pipeline Design* |
+
+After designing and implementing this, however, we realized that a connection from a server to a client to another server led to some unnecessary connection complexity, so we further 'tricked' the JSettlers game server to locally instantiate our Client and Brain as if it were an internal JSettlers AI. In this way, we can run our agent on the server itself and ignore connecting to the server with our client. This improved architecture is shown in the diagram below:
+
+| ![Architecture 1](assets/img/arch1.png)| 
+|:--:| 
+| *Initial Pipeline Design* |
+
 
 
 ## Training Design
