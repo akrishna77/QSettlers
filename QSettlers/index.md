@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
 
-<img src="assets/img/jsettlers.png" id="jsettlers_img">
+<img src="assets/img/jsettlers.png">
 
 ## What is Settlers of Catan?
 
