@@ -1,3 +1,7 @@
+<link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
+
+<img src="assets/img/jsettlers.png" id="jsettlers_img">
+
 # QSettlers: Deep Reinforcement Learning of Settlers of Catan
 
 ## What is Settlers of Catan?
@@ -105,7 +109,7 @@ A large part of this project was modifying the original JSettlers code to interf
 
 **DQNClient:** Player-side client. Connect to a server to play a game.
 
-**Settlers Bots:** Internal AI agents running in the server itself
+**JSettlers Bots:** Internal AI agents running in the server itself
 
 **Brain Module:** Contains all the decision-making logic. Takes game state & queries from Client and returns decision.
 
