@@ -1,5 +1,3 @@
-# QSettlers: Deep Reinforcement Learning of Settlers of Catan
-
 | ![Settlers of Catan Game UI](assets/img/jsettlers.png) | 
 |:--:| 
 | *Settlers of Catan Game UI* |
