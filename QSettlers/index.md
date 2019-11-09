@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
+
 | ![Settlers of Catan Game UI](assets/img/jsettlers.png) | 
 |:--:| 
 | *Settlers of Catan Game UI* |
