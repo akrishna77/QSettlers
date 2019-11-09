@@ -2,7 +2,9 @@
 
 <link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
 
-<img src="assets/img/jsettlers.png">
+| ![Reinforcement Learning Diagram](assets/img/jsettlers.png) | 
+|:--:| 
+| *Settlers of Catan Game UI* |
 
 ## What is Settlers of Catan?
 
