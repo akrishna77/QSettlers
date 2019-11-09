@@ -1,8 +1,5 @@
 <link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
 
-&nbsp;
-&nbsp;
-
 ## Peter McAughan, Arvind Krishnakumar, James Hahn, Shreeshaa Kulkarni
 
 &nbsp;
