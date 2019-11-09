@@ -3,6 +3,10 @@
 &nbsp;
 &nbsp;
 
+## Peter McAughan, Arvind Krishnakumar, James Hahn, Shreeshaa Kulkarni
+
+&nbsp;
+&nbsp;
 
 | ![Settlers of Catan Game UI](assets/img/jsettlers.png) | 
 |:--:| 
