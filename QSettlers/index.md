@@ -1,8 +1,8 @@
+# QSettlers: Deep Reinforcement Learning of Settlers of Catan
+
 <link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
 
 <img src="assets/img/jsettlers.png" id="jsettlers_img">
-
-# QSettlers: Deep Reinforcement Learning of Settlers of Catan
 
 ## What is Settlers of Catan?
 
@@ -24,6 +24,8 @@ The DQN, or Deep Q-Learning Network, algorithm is a novel approach to reinforcem
 |:--:| 
 | *Source: https://www.kdnuggets.com* |
 
+&nbsp;
+
 
 Q-Learning is a technique to develop such a policy by maintaining a large table with expected rewards (Q values) for every (state, action) pair. The agent will simply look at every action that it can take within a state, and execute the action with the largest Q-value. However, in a large state space with a large amount of possible actions, this table becomes infeasible to keep and thoroughly 'fill out'. 
 
@@ -32,6 +34,9 @@ Deep Q-Learning is an alternative approach to Q-Learning that doesn't face these
 | ![General DQN Diagram](assets/img/Q-Learning.png) | 
 |:--:| 
 | *Source: https://www.analyticsvidhya.com* |
+
+&nbsp;
+&nbsp;
 
 ## Our Goals
 
@@ -50,12 +55,14 @@ For each DQN, we have to define what a 'state' is as a feature vector. In Settle
 |:--:| 
 | *DQN for Trade Decisions* |
 
+&nbsp;
 
 | ![Settlement DQN Diagram](assets/img/trade_nn.png)| 
 |:--:| 
 | *DQN for Settlement Scoring* |
 
-
+&nbsp;
+&nbsp;
 
 ### Neural Net Hyperparameters
 
@@ -83,11 +90,16 @@ In this technique, we have a parameter $$\epsilon$$ that is initialized to a hig
 |:--:| 
 |  |
 
+&nbsp;
+
 This represents the process of our agent becoming 'more sure' of itself as it trains more and more, while still exploring spaces where the expected reward is unknown. For our model, we used the following values for these parameters:
 
 |<a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon&space;=&space;1.00&space;\\&space;decay&space;=&space;0.975" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon&space;=&space;1.00&space;\\&space;decay&space;=&space;0.975" title="\epsilon = 1.00 \\ decay = 0.975" /></a>|
 |:--:| 
 |  |
+
+&nbsp;
+&nbsp;
 
 ### Replay Memory
 
@@ -99,7 +111,8 @@ This database of short-term memory is called **Replay Memory**. Now, every time 
 |:--:| 
 | |
 
-
+&nbsp;
+&nbsp;
 
 ## System Architecture Design
 
@@ -124,13 +137,17 @@ To implement our own agent, we had to create our own Client and Brain that inter
 |:--:| 
 | *Initial Pipeline Design* |
 
+&nbsp;
+&nbsp;
+
 After designing and implementing this, however, we realized that a connection from a server to a client to another server led to some unnecessary connection complexity, so we further 'tricked' the JSettlers game server to locally instantiate our Client and Brain as if it were an internal JSettlers AI. In this way, we can run our agent on the server itself and ignore connecting to the server with our client. This improved architecture is shown in the diagram below:
 
 | ![Architecture 1](assets/img/arch1.png)| 
 |:--:| 
 | *Initial Pipeline Design* |
-
-
+ 
+&nbsp;
+&nbsp;
 
 ## Training Design
 
