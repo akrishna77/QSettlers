@@ -179,42 +179,63 @@ The training process for 138 games took around 9 hours and 15 minutes to run on 
 
 ## Results
 
-| ![Training loss](assets/img/loss.png){:height="400px" width="1200px"} | 
+| ![Training loss (68)](assets/img/loss.png){:height="400px" width="1200px"} | 
 |:--:| 
 | *Training loss vs Episodes - 68 episodes* |
 
-| ![Training loss](assets/img/loss-138.png){:height="400px" width="1200px"} | 
-|:--:| 
-| *Training loss vs Episodes - 138 episodes* |
 ---
 
-| ![Accuracy](assets/img/acc.png){:height="450px" width="1200px"} | 
+| ![Training loss (138)](assets/img/loss-138.png){:height="400px" width="1200px"} | 
+|:--:| 
+| *Training loss vs Episodes - 138 episodes* |
+
+---
+
+| ![Accuracy (68)](assets/img/acc.png){:height="450px" width="1200px"} | 
 |:--:| 
 | *Model Accuracy vs Episodes - 68 episodes* |
 
-| ![Accuracy](assets/img/acc-138.png){:height="450px" width="1200px"} | 
+---
+
+| ![Accuracy (138)](assets/img/acc-138.png){:height="450px" width="1200px"} | 
 |:--:| 
 | *Model Accuracy vs Episodes - 138 episodes* |
 
 ---
 
-| ![Rewards](assets/img/reward_avg.png){:height="450px" width="1200px"} | 
+| ![Rewards (68)](assets/img/reward_avg.png){:height="450px" width="1200px"} | 
 |:--:| 
 | *Average Rewards vs Episodes - 68 episodes* |
 
-| ![Rewards](assets/img/reward_avg-138.png){:height="450px" width="1200px"} | 
+---
+
+| ![Rewards (138)](assets/img/reward_avg_138.png){:height="450px" width="1200px"} | 
 |:--:| 
 | *Average Rewards vs Episodes - 138 episodes* |
 
 ---
 
-| ![Epsilon](assets/img/epsilon.png){:height="450px" width="1200px"} | 
+| ![Epsilon (68)](assets/img/epsilon.png){:height="450px" width="1200px"} | 
 |:--:| 
 | *Epsilon vs Episodes - 68 episodes* |
 
-| ![Epsilon](assets/img/epsilon-138.png){:height="450px" width="1200px"} | 
+---
+
+| ![Epsilon (138)](assets/img/epsilon-138.png){:height="450px" width="1200px"} | 
 |:--:| 
 | *Epsilon vs Episodes - 138 episodes* |
+
+&nbsp;
+&nbsp;
+
+## Discussion
+
+We're overall pleased with the performance of our model. Our loss metric has a general downward trend, spiking up after every 4 episodes. This makes sense, as the method used to calculate loss is updated every couple of episodes. Given more training time, we see this loss approaching a very small value
+
+Our average reward is also increasing up to a value of 6, and the reward graph shows a great deal of improvement. From getting last place every time, our agent is now consistently getting second place. This does mean that the agent is very infrequently 'winning' the game. We can attribute this to a shortcoming of training, or the fact that we're only altering trading mechanics in the game. Even with perfect negotiation ability, a player can still lose the game if their building decisions are suboptimal. Likely, all of these factors play a role in our agent's total performance.
+
+
+
 
 ## Future Possibilites
 
