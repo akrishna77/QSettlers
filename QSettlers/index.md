@@ -112,7 +112,7 @@ With a neural network it's often inefficient to train on single data points and 
 
 This database of short-term memory is called **Replay Memory**. Now, every time we want to update our weights we randomly select a number of experiences from our replay memory and use them as a batch to train our model. The replay memory size as well as training batch size are two parameters that need to be optimized, and for this project we use the following values: 
 
-| <a href="https://www.codecogs.com/eqnedit.php?latex=\begin{center}&space;Replay\&space;Memory\&space;Size&space;=&space;1&space;\end{center}&space;Training\&space;Batch\&space;Size&space;=&space;1" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\begin{center}&space;Replay\&space;Memory\&space;Size&space;=&space;1&space;\end{center}&space;Training\&space;Batch\&space;Size&space;=&space;1" title="\begin{center} Replay\ Memory\ Size = 1 \end{center} Training\ Batch\ Size = 1" /></a>| 
+| <a href="https://www.codecogs.com/eqnedit.php?latex=\begin{center}&space;Replay\&space;Memory\&space;Size&space;=&space;100&space;\end{center}&space;Training\&space;Batch\&space;Size&space;=&space;16" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\begin{center}&space;Replay\&space;Memory\&space;Size&space;=&space;100&space;\end{center}&space;Training\&space;Batch\&space;Size&space;=&space;16" title="\begin{center} Replay\ Memory\ Size = 100 \end{center} Training\ Batch\ Size = 16" /></a>| 
 |:--:| 
 | |
 
@@ -174,34 +174,47 @@ With some great features already existing inside JSettlers and creating some add
 7. Save model weights and performance logs.
 
 
-The training process as a whole takes around a day to run to completion, averaging about 25 games per hour!
+The training process for 138 games took around 9 hours and 15 minutes to run on a standard CPU, averaging about 15 games per hour. 
 
 
 ## Results
 
-To do! Show number of total placings as well as image of Tensorboard rewards during training.
-
 | ![Training loss](assets/img/loss.png){:height="400px" width="1200px"} | 
 |:--:| 
-| *Training loss vs Episodes* |
+| *Training loss vs Episodes - 68 episodes* |
 
+| ![Training loss](assets/img/loss-138.png){:height="400px" width="1200px"} | 
+|:--:| 
+| *Training loss vs Episodes - 138 episodes* |
 ---
 
 | ![Accuracy](assets/img/acc.png){:height="450px" width="1200px"} | 
 |:--:| 
-| *Model Accuracy vs Episodes* |
+| *Model Accuracy vs Episodes - 68 episodes* |
+
+| ![Accuracy](assets/img/acc-138.png){:height="450px" width="1200px"} | 
+|:--:| 
+| *Model Accuracy vs Episodes - 138 episodes* |
 
 ---
 
 | ![Rewards](assets/img/reward_avg.png){:height="450px" width="1200px"} | 
 |:--:| 
-| *Average Rewards vs Episodes* |
+| *Average Rewards vs Episodes - 68 episodes* |
+
+| ![Rewards](assets/img/reward_avg-138.png){:height="450px" width="1200px"} | 
+|:--:| 
+| *Average Rewards vs Episodes - 138 episodes* |
 
 ---
 
 | ![Epsilon](assets/img/epsilon.png){:height="450px" width="1200px"} | 
 |:--:| 
-| *Epsilon vs Episodes* |
+| *Epsilon vs Episodes - 68 episodes* |
+
+| ![Epsilon](assets/img/epsilon-138.png){:height="450px" width="1200px"} | 
+|:--:| 
+| *Epsilon vs Episodes - 138 episodes* |
 
 ## Future Possibilites
 
