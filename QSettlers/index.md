@@ -11,7 +11,7 @@
 
 ## What is Settlers of Catan?
 
-Settlers of Catan is a very popular board game created by Klaus Teuber in 1995 and has been played all over the world for almost 25 years. It is a four-player game that involves rolling dice, collecting resources, and building a settlement that eventually is successful enough to win the game. Although rolling dice and preparing a building strategy is enjoyable, one of the most fun aspects of the game comes from its social component. Throughout the game players negotiate with eachother, proposing trades for various resources and choosing which trades to decline or accept.
+Settlers of Catan is a very popular board game created by Klaus Teuber in 1995 and has been played all over the world for almost 25 years. It is a four-player game that involves rolling dice, collecting resources, and building a settlement that eventually is successful enough to win the game. Although rolling dice and preparing a building strategy is enjoyable, one of the most fun aspects of the game comes from its social component. Throughout the game, players negotiate with each other, proposing trades for various resources and choosing which trades to decline or accept.
 
 From an Artificial Intelligence perspective, developing an agent for this game is an interesting challenge. On one hand, a player must create a building policy to prioritize certain structures in certain locations. On the other hand, a player must utilize the resources of others: only proposing and accepting trades that are most beneficial to the player.
 
@@ -54,7 +54,7 @@ Our goal for this project was to use this DQN algorithm to improve upon the JSet
 
 As shown in the diagram above, we have to define what our 'state' really is as well as the possible actions to take in that state. The amount of information available to the agent and the possible actions depend on which environment the game is in: negotiation or building. Thus, we created two DQNs that will handle negotiation and building respectively. 
 
-For each DQN, we have to define what a 'state' is as a feature vector. In Settlers of Catan there are a huge amount of features in a game state: what buildings each player has, where these buildings are, what the terrain is like, how many points each player has, and many more. We elected not to use every single feature in a state representation as the network would require more training time to learn which are relevant and which are not. By using prior knowledge and only providing relevant features to the network, we hypothesize training to be more efficient. The diagrams below show our constructed feature vector for our network:
+For each DQN, we have to define what a 'state' is as a feature vector. In Settlers of Catan, there are a huge number of features in a game state: what buildings each player has, where these buildings are, what the terrain is like, how many points each player has, and many more. We elected not to use every single feature in a state representation as the network would require more training time to learn which are relevant and which are not. By using prior knowledge and only providing relevant features to the network, we hypothesize training to be more efficient. The diagrams below show our constructed feature vectors for each network:
 
 | ![Trade DQN Diagram](assets/img/trade_nn.png)| 
 |:--:| 
@@ -89,7 +89,7 @@ In order for the model to learn what is successful and what isn't, we need to fe
 
 Additionally, the agent has to explore all the different actions in different states that it can take. Sometimes, an agent should choose an action that it thinks is less successful in an attempt to learn more about the action space during training. There are many techniques to explore the state, action, and reward space, and we chose a technique called **Epsilon-Greedy Policy Improvement**. 
 
-In this technique, we have a parameter $$\epsilon$$ that is initialized to a high value, such as .999. Whenever we have to make a decision, we generate a random number and if it is greater than epsilon, we return a completely random action without querying our network. If this random number is less than epsilon, we actually perform forward propogation on our network and return the result. In both scenarios, we train our network on the resultant reward. After every decision is made, we update epsilon by a decay factor:
+In this technique, we have a parameter epsilon that is initialized to a high value, such as .999. Whenever we have to make a decision, we generate a random number and if it is greater than epsilon, we return a completely random action without querying our network. If this random number is less than epsilon, we actually perform forward propogation on our network and return the result. In both scenarios, we train our network on the resultant reward. After every decision is made, we update epsilon by a decay factor:
 
 | <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon&space;=&space;decay&space;\times&space;\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon&space;=&space;decay&space;\times&space;\epsilon" title="\epsilon = decay \times \epsilon" /></a>| 
 |:--:| 
@@ -108,7 +108,7 @@ This represents the process of our agent becoming 'more sure' of itself as it tr
 
 ### Replay Memory
 
-With a neural network it's often inefficient to train on single data points and perform back-propogation for every observation in your dataset, and so these models are typically trained in batches such that the model trains on batches of data at one time. With reinforcement learning, it's intuitive to train every time you perform an action and get feedback, but we run into the same efficiency problem. To solve this, we keep a database of 'short-term memory', and every time the agent performs an action and gets feedback we place this 'experience' in our database. We do want to train on new experiences, so when we add a new experience in our database, we remove the oldest experience.
+With a neural network, it's often inefficient to train on single data points and perform back-propogation for every observation in your dataset, and so these models are typically trained in batches such that the model trains on batches of data at one time. With reinforcement learning, it's intuitive to train every time you perform an action and get feedback, but we run into the same efficiency problem. To solve this, we keep a database of 'short-term memory', and every time the agent performs an action and gets feedback we place this 'experience' in our database. We do want to train on new experiences, so when we add a new experience in our database, we remove the oldest experience.
 
 This database of short-term memory is called **Replay Memory**. Now, every time we want to update our weights we randomly select a number of experiences from our replay memory and use them as a batch to train our model. The replay memory size as well as training batch size are two parameters that need to be optimized, and for this project we use the following values: 
 
@@ -121,7 +121,7 @@ This database of short-term memory is called **Replay Memory**. Now, every time 
 
 ## System Architecture Design
 
-A large part of this project was modifying the original JSettlers code to interface with our DQN, which required understanding the underlying architecture of JSettlers and altering it to our needs. The framework of JSettlers is comprised of the following main components, all written in Java:
+A large part of this project involved modifying the original JSettlers code to interface with our DQN, which required understanding the underlying architecture of JSettlers and altering it to our needs. The framework of JSettlers is comprised of the following main components, all written in Java:
 
 **JSettlers Server:** Server that hosts the game and sends messages between clients
 
@@ -237,11 +237,9 @@ Our average reward is also increasing up to a value of 6, and the reward graph s
 One large obstacle in this project were errors within the JSettlers framework itself. Playing a game without player clients is a newer feature to the Jeremy Modin's project, and when there are only AI agents playing against eachother there are frequent errors. The results of around 35% of total games had to be discarded due to unexpected game resets or other internal errors. This made training on a consistent number of games somewhat difficult. 
 
 
-
-
 ## Future Possibilites
 
-A major part of this project was developing the architecture that supports DQN integration with the Settlers of Catan framework. While we applied this reinforcement learning to two mechanics in the game, namely considering offers and choosing preferred settlements to build, in theory every single game decision can be implemented using a DQN with this architecture. Examples of some game decisions that we thought of experimenting with were:
+A major part of this project involved developing the architecture that supports DQN integration with the Settlers of Catan framework. While we applied this reinforcement learning to two mechanics in the game, namely considering offers and choosing preferred settlements to build, in theory, every single game decision can be implemented using a DQN with this architecture. Examples of some game decisions that we thought of experimenting with were:
 
 1. Offering Trades
 2. Building Roads
@@ -249,7 +247,7 @@ A major part of this project was developing the architecture that supports DQN i
 4. Investing in Development Cards
 5. Targeting specific players in some scenarios
 
-Given enough time and understanding of the game, this project can be extended to create an AI agent completely independant of the JSettlers agent. The results of such an endeavor are unclear, but the possibility is there!
+Given enough time and understanding of the game, this project can be extended to create an AI agent completely independent of the JSettlers agent. The results of such an endeavor are unclear, but the possibility is there!
 
 
 ## References 
