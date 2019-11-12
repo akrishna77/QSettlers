@@ -45,7 +45,7 @@ Deep Q-Learning is an alternative approach to Q-Learning that doesn't face these
 
 ## Our Goals
 
-Our goal for this project was to use this DQN algorithm to improve upon the JSettlers agent and show that a DQN can be successfully applied to the two game mechanics of Settlers of Catan: building and negotiating. Building an agent that utilizes DQN to play the entire game is outside the scope of this work; we are simply building upon the JSettlers agent by replacing rule-based decisions by DQN output where applicable. 
+Our goal for this project was to use this DQN algorithm to improve upon the JSettlers agent and show that a DQN can be successfully applied to the game mechanics of Settlers of Catan. Our original proposal had plans to implement both mechanics of the game: building and negotiating. Given some time and resource constraints, however, we decided to only implement negotiation decisions in our agent. Building an agent that utilizes DQN to play the entire game is outside the scope of this work; we are simply building upon the JSettlers agent by replacing rule-based decisions by DQN output where applicable. 
 
 
 ## DQN Design
@@ -54,7 +54,7 @@ Our goal for this project was to use this DQN algorithm to improve upon the JSet
 
 As shown in the diagram above, we have to define what our 'state' really is as well as the possible actions to take in that state. The amount of information available to the agent and the possible actions depend on which environment the game is in: negotiation or building. Thus, we created two DQNs that will handle negotiation and building respectively. 
 
-For each DQN, we have to define what a 'state' is as a feature vector. In Settlers of Catan there are a huge amount of features in a game state: what buildings each player has, where these buildings are, what the terrain is like, how many points each player has, and many more. We elected not to use every single feature in a state representation as the network would require more training time to learn which are relevant and which are not. By using prior knowledge and only providing relevant features to the network, we hypothesize training to be more efficient. The diagrams below show our constructed feature vectors for each network:
+For each DQN, we have to define what a 'state' is as a feature vector. In Settlers of Catan there are a huge amount of features in a game state: what buildings each player has, where these buildings are, what the terrain is like, how many points each player has, and many more. We elected not to use every single feature in a state representation as the network would require more training time to learn which are relevant and which are not. By using prior knowledge and only providing relevant features to the network, we hypothesize training to be more efficient. The diagrams below show our constructed feature vector for our network:
 
 | ![Trade DQN Diagram](assets/img/trade_nn.png)| 
 |:--:| 
@@ -71,7 +71,7 @@ For each DQN, we have to define what a 'state' is as a feature vector. In Settle
 
 ### Neural Net Hyperparameters
 
-We performed some basic testing to determine the hyperparameters for the two neural networks above. These hyperparameters are as follows:
+We performed some basic testing to determine the hyperparameters for the neural network architecture above. These hyperparameters are as follows:
 
 1. Number of hidden layers: 2
 2. Size of hidden layers: 256
@@ -233,6 +233,8 @@ The training process for 138 games took around 9 hours and 15 minutes to run on 
 We're overall pleased with the performance of our model. Our loss metric has a general downward trend, spiking up after every 4 episodes. This makes sense, as the method used to calculate loss is updated every couple of episodes. Given more training time, we see this loss approaching a very small value
 
 Our average reward is also increasing up to a value of 6, and the reward graph shows a great deal of improvement. From getting last place every time, our agent is now consistently getting second place. This does mean that the agent is very infrequently 'winning' the game. We can attribute this to a shortcoming of training, or the fact that we're only altering trading mechanics in the game. Even with perfect negotiation ability, a player can still lose the game if their building decisions are suboptimal. Likely, all of these factors play a role in our agent's total performance.
+
+One large obstacle in this project were errors within the JSettlers framework itself. Playing a game without player clients is a newer feature to the Jeremy Modin's project, and when there are only AI agents playing against eachother there are frequent errors. The results of around 35% of total games had to be discarded due to unexpected game resets or other internal errors. This made training on a consistent number of games somewhat difficult. 
 
 
 
