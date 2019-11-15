@@ -209,7 +209,7 @@ The training process for 138 games took around 9 hours and 15 minutes to run on 
 
 ---
 
-| ![Rewards (138)](assets/img/reward_avg_138.png){:height="450px" width="1200px"} | 
+| ![Rewards (138)](assets/img/reward_avg-138.png){:height="450px" width="1200px"} | 
 |:--:| 
 | *Average Rewards vs Episodes - 138 episodes* |
 
