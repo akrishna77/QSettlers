@@ -52,7 +52,7 @@ Our goal for this project was to use this DQN algorithm to improve upon the JSet
 
 ### Constructing Feature Vectors
 
-As shown in the diagram above, we have to define what our 'state' really is as well as the possible actions to take in that state. The amount of information available to the agent and the possible actions depend on which environment the game is in: negotiation or building. Thus, we designed a DQN\ that will handle negotiation. 
+As shown in the diagram above, we have to define what our 'state' really is as well as the possible actions to take in that state. The amount of information available to the agent and the possible actions depend on which environment the game is in: negotiation or building. Thus, we designed a DQN that will handle negotiation. 
 
 For the DQN, we have to define what a 'state' is as a feature vector. In Settlers of Catan, there are a huge number of features in a game state: what buildings each player has, where these buildings are, what the terrain is like, how many points each player has, and many more. We elected not to use every single feature in a state representation as the network would require more training time to learn which are relevant and which are not. By using prior knowledge and only providing relevant features to the network, we hypothesize training to be more efficient. The diagram below shows our constructed feature vector for the network:
 
@@ -230,9 +230,9 @@ The training process for 200 games took around 10 hours and 30 minutes to run on
 
 ---
 
-|*DQN Agent Standings*|
-|:-------------------------:|:-------------------------:|
-|![](assets/img/dqn-standings.png){:height="400px"}|
+| ![](assets/img/dqn-standings.png){:height="400px"} | 
+|:--:| 
+| *DQN Agent Standings* |
 
 &nbsp;
 &nbsp;
