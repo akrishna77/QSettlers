@@ -174,11 +174,13 @@ The training process for 200 games took around 10 hours and 30 minutes to run on
 
 ## Results
 
+<!--
 | ![Training loss (68)](assets/img/loss.png){:height="400px" width="1200px"} | 
 |:--:| 
 | *Training loss vs Episodes - 68 episodes* |
 
 ---
+-->
 
 | ![Training loss (138)](assets/img/loss-138.png){:height="400px" width="1200px"} | 
 |:--:| 
@@ -186,11 +188,13 @@ The training process for 200 games took around 10 hours and 30 minutes to run on
 
 ---
 
+<!--
 | ![Accuracy (68)](assets/img/acc.png){:height="450px" width="1200px"} | 
 |:--:| 
 | *Model Accuracy vs Episodes - 68 episodes* |
 
 ---
+-->
 
 | ![Accuracy (138)](assets/img/acc-138.png){:height="450px" width="1200px"} | 
 |:--:| 
@@ -198,11 +202,13 @@ The training process for 200 games took around 10 hours and 30 minutes to run on
 
 ---
 
+<!--
 | ![Rewards (68)](assets/img/reward_avg.png){:height="450px" width="1200px"} | 
 |:--:| 
 | *Average Rewards vs Episodes - 68 episodes* |
 
 ---
+-->
 
 | ![Rewards (138)](assets/img/reward_avg-138.png){:height="450px" width="1200px"} | 
 |:--:| 
@@ -210,11 +216,13 @@ The training process for 200 games took around 10 hours and 30 minutes to run on
 
 ---
 
+<!--
 | ![Epsilon (68)](assets/img/epsilon.png){:height="450px" width="1200px"} | 
 |:--:| 
 | *Epsilon vs Episodes - 68 episodes* |
 
 ---
+-->
 
 | ![Epsilon (138)](assets/img/epsilon-138.png){:height="450px" width="1200px"} | 
 |:--:| 
@@ -222,9 +230,9 @@ The training process for 200 games took around 10 hours and 30 minutes to run on
 
 ---
 
-*Random Action Agent Standings*             |  *DQN Agent Standings*
-:-------------------------:|:-------------------------:
-![](assets/img/dqn-standings.png){:height="400px"}  |  ![](assets/img/dqn-standings.png){:height="400px"}
+|*DQN Agent Standings*|
+|:-------------------------:|:-------------------------:|
+|![](assets/img/dqn-standings.png){:height="400px"}|
 
 &nbsp;
 &nbsp;
