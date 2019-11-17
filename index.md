@@ -95,16 +95,11 @@ In this technique, we have a parameter epsilon that is initialized to a high val
 |:--:| 
 |  |
 
-&nbsp;
-
 This represents the process of our agent becoming 'more sure' of itself as it trains more and more, while still exploring spaces where the expected reward is unknown. For our model, we used the following values for these parameters:
 
 |<a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon&space;=&space;1.00&space;\\&space;decay&space;=&space;0.975" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon&space;=&space;1.00&space;\\&space;decay&space;=&space;0.975" title="\epsilon = 1.00 \\ decay = 0.975" /></a>|
 |:--:| 
 |  |
-
-&nbsp;
-&nbsp;
 
 ### Replay Memory
 
@@ -115,9 +110,6 @@ This database of short-term memory is called **Replay Memory**. Now, every time 
 | <a href="https://www.codecogs.com/eqnedit.php?latex=\begin{center}&space;Replay\&space;Memory\&space;Size&space;=&space;100&space;\end{center}&space;Training\&space;Batch\&space;Size&space;=&space;16" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\begin{center}&space;Replay\&space;Memory\&space;Size&space;=&space;100&space;\end{center}&space;Training\&space;Batch\&space;Size&space;=&space;16" title="\begin{center} Replay\ Memory\ Size = 100 \end{center} Training\ Batch\ Size = 16" /></a>| 
 |:--:| 
 | |
-
-&nbsp;
-&nbsp;
 
 ## System Architecture Design
 
@@ -239,13 +231,14 @@ One large obstacle in this project were errors within the JSettlers framework it
 
 ## Future Possibilites
 
-A major part of this project involved developing the architecture that supports DQN integration with the Settlers of Catan framework. While we applied this reinforcement learning to two mechanics in the game, namely considering offers and choosing preferred settlements to build, in theory, every single game decision can be implemented using a DQN with this architecture. Examples of some game decisions that we thought of experimenting with were:
+A major part of this project involved developing the architecture that supports DQN integration with the Settlers of Catan framework. While we applied reinforcement learning to a single mechanics in the game, namely considering offers for resources, in theory, every single game decision can be implemented using a DQN with this architecture. Examples of some game decisions that we thought of experimenting with were:
 
-1. Offering Trades
-2. Building Roads
-3. Time & place to move a robber
-4. Investing in Development Cards
-5. Targeting specific players in some scenarios
+1. Offering trades.
+2. Building settlements.
+2. Building roads.
+3. Time & place to move the robber.
+4. Investing in development cards.
+5. Targeting specific players in some scenarios.
 
 Given enough time and understanding of the game, this project can be extended to create an AI agent completely independent of the JSettlers agent. The results of such an endeavor are unclear, but the possibility is there!
 
