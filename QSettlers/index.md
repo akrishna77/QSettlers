@@ -75,8 +75,9 @@ We performed some basic testing to determine the hyperparameters for the neural 
 
 1. Number of hidden layers: 2
 2. Size of hidden layers: 256
+3. Learning rate: 0.001
 
-The values for other hyperparameters are shown explained in the following sections. 
+We use the mean squared error as our loss function, and Adam optimization to accelerate learning in our neural network. The values for other hyperparameters are explained in the following sections. 
 
 ### Defining and Exploring the Reward Space
 
@@ -95,16 +96,11 @@ In this technique, we have a parameter epsilon that is initialized to a high val
 |:--:| 
 |  |
 
-&nbsp;
-
 This represents the process of our agent becoming 'more sure' of itself as it trains more and more, while still exploring spaces where the expected reward is unknown. For our model, we used the following values for these parameters:
 
 |<a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon&space;=&space;1.00&space;\\&space;decay&space;=&space;0.975" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon&space;=&space;1.00&space;\\&space;decay&space;=&space;0.975" title="\epsilon = 1.00 \\ decay = 0.975" /></a>|
 |:--:| 
 |  |
-
-&nbsp;
-&nbsp;
 
 ### Replay Memory
 
@@ -115,9 +111,6 @@ This database of short-term memory is called **Replay Memory**. Now, every time 
 | <a href="https://www.codecogs.com/eqnedit.php?latex=\begin{center}&space;Replay\&space;Memory\&space;Size&space;=&space;100&space;\end{center}&space;Training\&space;Batch\&space;Size&space;=&space;16" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\begin{center}&space;Replay\&space;Memory\&space;Size&space;=&space;100&space;\end{center}&space;Training\&space;Batch\&space;Size&space;=&space;16" title="\begin{center} Replay\ Memory\ Size = 100 \end{center} Training\ Batch\ Size = 16" /></a>| 
 |:--:| 
 | |
-
-&nbsp;
-&nbsp;
 
 ## System Architecture Design
 
@@ -136,20 +129,22 @@ Our DQN code was all written in Python, and is implemented in the component:
 **DQN Server:** Server that accepts game states and queries from a client and returns decisions while training the underlying model.
 
 
-To implement our own agent, we had to create our own Client and Brain that interface both with the Server for game management and our DQN Server for decision logic. This initial architecture is shown in the diagram below:
+To implement our own agent, we had to create our own Client and Brain that interface both with the Server for game management and our DQN Server for decision logic. After designing and implementing this, however, we realized that a connection from a server to a client to another server led to some unnecessary connection complexity, so we further 'tricked' the JSettlers game server to locally instantiate our Client and Brain as if it were an internal JSettlers AI. In this way, we can run our agent on the server itself and ignore connecting to the server with our client. This simplifies the experiment setup process and makes the pipeline faster and more robust at the cost of some clever framework manipulaton. The initial architecture and the improved architecture is shown in the diagram below, on the left and right respectively.
 
-| ![Architecture 1](assets/img/arch1.png)| 
+
+*Initial Pipeline Design*             |  *Improved Pipeline Design*
+:-------------------------:|:-------------------------:
+![Architecture 1](assets/img/arch1.png){:height="800px"}  |  ![Architecture 2](assets/img/arch2.png){:height="800px"}
+
+<!-- | ![Architecture 1](assets/img/arch1.png)| 
 |:--:| 
-| *Initial Pipeline Design* |
+| *Initial Pipeline Design* | -->
 
-&nbsp;
-&nbsp;
-
-After designing and implementing this, however, we realized that a connection from a server to a client to another server led to some unnecessary connection complexity, so we further 'tricked' the JSettlers game server to locally instantiate our Client and Brain as if it were an internal JSettlers AI. In this way, we can run our agent on the server itself and ignore connecting to the server with our client. This simplifies the experiment setup process and makes the pipeline faster and more robust at the cost of some clever framework manipulaton. This improved architecture is shown in the diagram below:
-
-| ![Architecture 2](assets/img/arch2.png)| 
+<!-- After designing and implementing this, however, we realized that a connection from a server to a client to another server led to some unnecessary connection complexity, so we further 'tricked' the JSettlers game server to locally instantiate our Client and Brain as if it were an internal JSettlers AI. In this way, we can run our agent on the server itself and ignore connecting to the server with our client. This simplifies the experiment setup process and makes the pipeline faster and more robust at the cost of some clever framework manipulaton. This improved architecture is shown in the diagram below:
+ -->
+<!-- | ![Architecture 2](assets/img/arch2.png)| 
 |:--:| 
-| *Improved Pipeline Design* |
+| *Improved Pipeline Design* | -->
  
 &nbsp;
 &nbsp;
@@ -174,7 +169,7 @@ With some great features already existing inside JSettlers and creating some add
 7. Save model weights and performance logs.
 
 
-The training process for 138 games took around 9 hours and 15 minutes to run on a standard CPU, averaging about 15 games per hour. 
+The training process for 200 games took around 10 hours and 30 minutes to run on a standard CPU, averaging about 19 games per hour. 
 
 
 ## Results
@@ -209,7 +204,7 @@ The training process for 138 games took around 9 hours and 15 minutes to run on 
 
 ---
 
-| ![Rewards (138)](assets/img/reward_avg_138.png){:height="450px" width="1200px"} | 
+| ![Rewards (138)](assets/img/reward_avg-138.png){:height="450px" width="1200px"} | 
 |:--:| 
 | *Average Rewards vs Episodes - 138 episodes* |
 
@@ -225,6 +220,12 @@ The training process for 138 games took around 9 hours and 15 minutes to run on 
 |:--:| 
 | *Epsilon vs Episodes - 138 episodes* |
 
+---
+
+*Random Action Agent Standings*             |  *DQN Agent Standings*
+:-------------------------:|:-------------------------:
+![](assets/img/dqn-standings.png){:height="400px"}  |  ![](assets/img/dqn-standings.png){:height="400px"}
+
 &nbsp;
 &nbsp;
 
@@ -239,13 +240,14 @@ One large obstacle in this project were errors within the JSettlers framework it
 
 ## Future Possibilites
 
-A major part of this project involved developing the architecture that supports DQN integration with the Settlers of Catan framework. While we applied this reinforcement learning to two mechanics in the game, namely considering offers and choosing preferred settlements to build, in theory, every single game decision can be implemented using a DQN with this architecture. Examples of some game decisions that we thought of experimenting with were:
+A major part of this project involved developing the architecture that supports DQN integration with the Settlers of Catan framework. While we applied reinforcement learning to a single mechanic in the game, namely considering offers for resources, in theory, every single game decision can be implemented using a DQN with this architecture. Examples of some game decisions that we thought of experimenting with were:
 
-1. Offering Trades
-2. Building Roads
-3. Time & place to move a robber
-4. Investing in Development Cards
-5. Targeting specific players in some scenarios
+1. Offering trades.
+2. Building settlements.
+3. Building roads.
+4. Time & place to move the robber.
+5. Investing in development cards.
+6. Targeting specific players in some scenarios.
 
 Given enough time and understanding of the game, this project can be extended to create an AI agent completely independent of the JSettlers agent. The results of such an endeavor are unclear, but the possibility is there!
 
