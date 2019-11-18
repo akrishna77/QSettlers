@@ -60,6 +60,7 @@ For the DQN, we have to define what a 'state' is as a feature vector. In Settler
 |:--:|
 | *DQN for Trade Decisions* |
 
+
 Unfortunately, the DQN for settlements decision making was not implemented due to time and infrastructure constraints. With that being said, the following diagram is the proposed network. The input consists of metadata of the board, which contains 37 tiles. There are 83 input neurons. Thirty-seven of the input neurons describe the type of each tile on the board (i.e. water, desert, etc.). We chose this in the architecture design since 1) the bot should learn not to try to place settlements on water tiles and certain tile/land types should be incentivized over others. Next, 5 neurons are used to store the location of the ports on the board, since it is useful to place settlements close to ports, and 1 neuron is used to store the coordinate of the robber, as the robber can roam the board and disrupt settlements; the bot should learn to avoid the robber. Finally, 20 neurons are used as the location of the current settlements on the board and 20 neurons are the location of the current cities on the board. For these final 40 neurons, the bot should either learn to avoid current settlements/cities on the board or try to build close to them. These 83 input neurons are connected with 2 hidden layers of size 60 and 50 respectively (similar to the trade DQN), which are connected to 37 output neurons representing the score for placing a settlement on each given board tile.
 
 | ![Settlement DQN Diagram](assets/img/settlement-network.png)|
@@ -284,3 +285,14 @@ Given enough time and understanding of the game, this project can be extended to
 - DQN Tutorial: https://pythonprogramming.net/deep-q-learning-dqn-reinforcement-learning-python-tutorial/
 
 - DQN Algorithm: https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf
+
+
+## Individual Contributions
+
+Peter McAughan:
+
+Arvind Krishnakumar:
+
+James Hahn: Investigated input state to settlements network, as well as defining architecture and hyperparameters of settlements network. Investigated restructuring entire program to get settlements network working.
+
+Shreeshaa Kulkarni:
