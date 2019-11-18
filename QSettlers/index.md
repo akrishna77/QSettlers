@@ -289,10 +289,10 @@ Given enough time and understanding of the game, this project can be extended to
 
 ## Individual Contributions
 
-**Peter McAughan:**
+**Peter McAughan:** Setting up JSettlers architecture and communication with our agent. Identifying state variables for trade actions in the game. Modularizing game state functions.
 
-**Arvind Krishnakumar:**
+**Arvind Krishnakumar:** Developing the DQN agent for considering trades and training the agent. Setting up Tensorboard for monitoring model performance and metrics.
 
-**James Hahn:** Investigated input state to settlements network, as well as defining architecture and hyperparameters of settlements network. Investigated restructuring entire program to get settlements network working.
+**James Hahn:** Investigated input state to settlements network, as well as defining architecture and hyperparameters of settlements network. Investigated restructuring entire program to get settlements network working. Some hyperparameter tuning.
 
-**Shreeshaa Kulkarni:**
+**Shreeshaa Kulkarni:** Investigated how a DQN agent could be built and incorporated into the settlements network. Also ran some training simulations for logging and some hyperparameter tuning.
