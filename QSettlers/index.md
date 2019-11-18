@@ -289,7 +289,7 @@ Given enough time and understanding of the game, this project can be extended to
 
 ## Individual Contributions
 
-**Peter McAughan:** Setting up JSettlers architecture and communication with our agent. Identifying state variables for trade actions in the game. Modularizing game state functions.
+**Peter McAughan:** Setting up JSettlers architecture and communication with our agent, as well as developing the structure of the DQN agent. Identifying state variables for trade actions in the game. Modularizing game state functions and creating training pipeline.
 
 **Arvind Krishnakumar:** Developing the DQN agent for considering trades and training the agent. Setting up Tensorboard for monitoring model performance and metrics.
 
