@@ -289,10 +289,10 @@ Given enough time and understanding of the game, this project can be extended to
 
 ## Individual Contributions
 
-Peter McAughan:
+**Peter McAughan:**
 
-Arvind Krishnakumar:
+**Arvind Krishnakumar:**
 
-James Hahn: Investigated input state to settlements network, as well as defining architecture and hyperparameters of settlements network. Investigated restructuring entire program to get settlements network working.
+**James Hahn:** Investigated input state to settlements network, as well as defining architecture and hyperparameters of settlements network. Investigated restructuring entire program to get settlements network working.
 
-Shreeshaa Kulkarni:
+**Shreeshaa Kulkarni:**
