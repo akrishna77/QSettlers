@@ -89,7 +89,7 @@ We performed some basic testing to determine the hyperparameters for the trade n
 Now, for the settlements network, the proposed hyperparameters are as follows (slightly different since larger network architecture):
 
 1. Number of hidden layers: 2
-2. Activation: ReLu
+2. Activation: ReLU
 3. Learning rate: 0.0005
 4. Learning rate decay: None
 5. Dropout (after every hidden layer): 20%
